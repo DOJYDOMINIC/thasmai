@@ -13,7 +13,6 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-
   double val = .18;
 
   void ButtonState() {
@@ -39,16 +38,16 @@ class _RegisterState extends State<Register> {
     // var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor:Colors.black,
+      backgroundColor: Colors.black,
       drawer: MyDrawer(),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Container(
+            height: height,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    fit: BoxFit.fill
-                    , image: AssetImage(bgimage))),
+                    fit: BoxFit.fill, image: AssetImage(bgimage))),
             child: Padding(
               padding: const EdgeInsets.only(left: 15, right: 20),
               child: SafeArea(
@@ -62,8 +61,8 @@ class _RegisterState extends State<Register> {
                             onPressed: () {
                               Scaffold.of(context).openDrawer();
                             },
-                            icon: Icon(Icons.menu,
-                                color: Colors.black, size: 35),
+                            icon:
+                                Icon(Icons.menu, color: Colors.black, size: 35),
                           );
                         },
                       ),
@@ -71,14 +70,14 @@ class _RegisterState extends State<Register> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 15,right: 5),
+                    padding: const EdgeInsets.only(left: 15, right: 5),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         Container(child: Text(welcome, style: welcomeheading)),
-                         Container(
-                             child: Text(subtxtreg,style: substyl)),
+                        Container(child: Text(welcome, style: welcomeheading)),
+                        Container(child: Text(subtxtreg, style: substyl)),
                         SizedBox(
-                          height:  height * val,
+                          height: height * val,
                         ),
                         TextFieldOne(
                           hintText: emailhint,
@@ -93,7 +92,9 @@ class _RegisterState extends State<Register> {
                               return 'Please enter your email';
                             }
                             // Use a regular expression for basic email validation
-                            if (!RegExp(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$").hasMatch(value)) {
+                            if (!RegExp(
+                                    r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+                                .hasMatch(value)) {
                               //val = .09;
                               return 'Please enter a valid email address';
                             }
@@ -161,52 +162,56 @@ class _RegisterState extends State<Register> {
                             setState(() {
                               ButtonState();
                               // if (_formKey.currentState!.validate()) {
-                                // Form is valid, perform your action
-                                // _formKey.currentState!.save();
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => MeditationData(),));
+                              // Form is valid, perform your action
+                              // _formKey.currentState!.save();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MeditationData(),
+                                  ));
 
-                                // print('Email submitted: $_email');
+                              // print('Email submitted: $_email');
                               // }
                             });
                           },
                           child: AnimatedContainer(
                             duration: Duration(milliseconds: 50),
-                            height: 60,
+                            height: 55,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               gradient: isPressed
                                   ? LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.grey.shade400,
-                                  Colors.grey.shade200,
-                                  Colors.white
-                                ],
-                              )
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        Colors.grey.shade400,
+                                        Colors.grey.shade200,
+                                        Colors.white
+                                      ],
+                                    )
                                   : LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.white,
-                                  Colors.grey.shade200,
-                                  Colors.grey.shade400
-                                ],
-                              ),
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        Colors.white,
+                                        Colors.grey.shade200,
+                                        Colors.grey.shade400
+                                      ],
+                                    ),
                               boxShadow: isPressed
                                   ? [
-                                const BoxShadow(
-                                  color: Colors.black26,
-                                  spreadRadius: 1,
-                                  blurRadius: 5,
-                                  offset: Offset(2, 2),
-                                ),
-                              ]
+                                      const BoxShadow(
+                                        color: Colors.black26,
+                                        spreadRadius: 1,
+                                        blurRadius: 5,
+                                        offset: Offset(2, 2),
+                                      ),
+                                    ]
                                   : [
-                                const BoxShadow(
-                                  color: Colors.transparent,
-                                ),
-                              ],
+                                      const BoxShadow(
+                                        color: Colors.transparent,
+                                      ),
+                                    ],
                             ),
                             child: const Center(
                               child: Text(
@@ -219,16 +224,29 @@ class _RegisterState extends State<Register> {
                             ),
                           ),
                         ),
-                        SizedBox(height: height*.02,),
+                        SizedBox(
+                          height: height * .02,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            TextButton(onPressed: (){
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login(),));
-
-                            }, child: const Text(loginhint,style: TextStyle(color: ambercolor),)),
-                             Text(needsupport,style: TextStyle(color:whitecolor)),
-                            TextButton(onPressed: (){}, child: const Text(help,style: TextStyle(color: ambercolor)),)
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => Login(),
+                                  ));
+                                },
+                                child: const Text(
+                                  loginhint,
+                                  style: TextStyle(color: ambercolor),
+                                )),
+                            Text(needsupport,
+                                style: TextStyle(color: whitecolor)),
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text(help,
+                                  style: TextStyle(color: ambercolor)),
+                            )
                           ],
                         ),
                       ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:thasmai/constants/consts.dart';
 import 'package:thasmai/pages/profileedit.dart';
-import 'package:thasmai/widgets/bottombutton.dart';
+import 'package:thasmai/widgets/bottombutton_w.dart';
 import 'package:thasmai/widgets/boxquiz.dart';
 
 import '../widgets/mydrawer.dart';
@@ -30,7 +30,7 @@ class _MeditationDataState extends State<MeditationData> {
         isPressed = !isPressed;
       });
     });
-}
+  }
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -43,20 +43,20 @@ class _MeditationDataState extends State<MeditationData> {
 
     return Scaffold(
       drawer: MyDrawer(),
-      body: SingleChildScrollView(
-        child: Container(
-          // width: 300,
-          height: height,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              opacity: 0.1,
-              image: AssetImage(bgimage),
-            ),
+      body: Container(
+        // width: 300,
+        height: height,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            opacity: 0.1,
+            image: AssetImage(bgimage),
           ),
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15, right: 20),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15, right: 20),
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   Row(
@@ -82,7 +82,8 @@ class _MeditationDataState extends State<MeditationData> {
                       children: [
                         const Row(
                           children: [
-                            Text(meddatahed, style: welcomeheading),
+                            Expanded(
+                                child: Text(meddatahed, style: welcomeheading)),
                           ],
                         ),
                         SizedBox(
@@ -100,17 +101,19 @@ class _MeditationDataState extends State<MeditationData> {
                                     controller: id,
                                     decoration: InputDecoration(
                                       hintText: 'Referel ID',
-                                      labelStyle: TextStyle(color: ambercolor),
+                                      labelStyle:
+                                          const TextStyle(color: ambercolor),
                                       border: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 10.0, horizontal: 10.0),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 10.0, horizontal: 10.0),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors
                                               .black, // Change the color as needed
                                         ),
@@ -137,7 +140,15 @@ class _MeditationDataState extends State<MeditationData> {
                                           borderRadius:
                                               BorderRadius.circular(10))),
                                   onPressed: () {},
-                                  child: Text("find"))
+                                  child: const Text("find"))
+                            ],
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Row(
+                            children: [
+                              Expanded(child: Text("Person : AnilKumar")),
                             ],
                           ),
                         ),
@@ -203,7 +214,11 @@ class _MeditationDataState extends State<MeditationData> {
                             buttontext: contnu,
                             ontap: () {
                               ButtonState();
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(),));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProfilePage(),
+                                  ));
                             }),
                         SizedBox(
                           height: height * .02,

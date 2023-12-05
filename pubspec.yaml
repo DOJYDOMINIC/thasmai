@@ -37,6 +37,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
   image_picker: ^1.0.4
+  video_player: ^2.8.1
+  youtube_player_flutter: ^8.1.2
+  table_calendar: ^3.0.9
+  flutter_heatmap_calendar: ^1.0.5
+  flutter_countdown_timer: ^4.1.0
+  circular_countdown_timer: ^0.2.3
 
 dev_dependencies:
   flutter_test:

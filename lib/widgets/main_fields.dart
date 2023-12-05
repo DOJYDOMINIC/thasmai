@@ -7,16 +7,20 @@ import 'package:thasmai/constants/consts.dart';
 const Color appcolor = Colors.black;
 
 class TextFieldOne extends StatefulWidget {
-  const TextFieldOne(
-      {super.key, this.hinttext,
-      required this.controller,
-      required this.onchange,
-      required this.obsecuretxt,
-      this.preicon,
-      this.keytype,
-      this.fillcolor,
-      this.sufix,
-      this.validator, this.hintText, this.txtcolor,});
+  const TextFieldOne({
+    super.key,
+    this.hinttext,
+    required this.controller,
+    required this.onchange,
+    required this.obsecuretxt,
+    this.preicon,
+    this.keytype,
+    this.fillcolor,
+    this.sufix,
+    this.validator,
+    this.hintText,
+    this.txtcolor,
+  });
 
   final String? hinttext;
   final String? hintText;
@@ -42,18 +46,18 @@ class _TextFieldOneState extends State<TextFieldOne> {
       child: TextFormField(
         keyboardType: widget.keytype,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 15.0),
           hintText: widget.hintText,
-          hintStyle:  GoogleFonts.poppins(color: Colors.grey.shade400),
+          hintStyle: GoogleFonts.poppins(color: Colors.grey.shade400),
           suffixIcon: widget.sufix,
-          errorBorder:  OutlineInputBorder(
+          errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(8)),
             borderSide: BorderSide(width: 1, color: Colors.red),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide:  BorderSide(
-                width: 2,
-                color: Colors.grey), // Border color when not in focus
+            borderSide: BorderSide(
+                width: 2, color: Colors.grey), // Border color when not in focus
           ),
           labelText: widget.hinttext,
           labelStyle: GoogleFonts.poppins(color: Colors.white),
@@ -68,9 +72,9 @@ class _TextFieldOneState extends State<TextFieldOne> {
               borderRadius: BorderRadius.circular(8),
               borderSide: const BorderSide(color: Colors.white)),
         ),
-        style:  TextStyle(
-          color: widget.txtcolor ?? Colors.white,decoration: TextDecoration.none
-        ),
+        style: TextStyle(
+            color: widget.txtcolor ?? Colors.white,
+            decoration: TextDecoration.none),
         validator: widget.validator,
         //     (value) {
         //   if (value == null || value.isEmpty) {

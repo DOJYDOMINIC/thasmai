@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:thasmai/pages/login.dart';
+import 'package:thasmai/pages/meditationtimer.dart';
+import 'package:thasmai/pages/player.dart';
 import 'package:thasmai/pages/register.dart';
 
 void main() {
@@ -18,8 +21,9 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.poppinsTextTheme(
             Theme.of(context).textTheme,
           ),
-          appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
+          appBarTheme: AppBarTheme(backgroundColor: Colors.black),
         ),
-        home: const Register());
+        home: TimerScreen());
+        // home: Login());
   }
 }
