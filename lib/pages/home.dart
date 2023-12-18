@@ -127,13 +127,13 @@ class _HomePageState extends State<HomePage> {
                                               color: Colors.grey, width: 2),
                                           borderRadius:
                                               BorderRadius.circular(8),
-                                          image: DecorationImage(
+                                          image: const DecorationImage(
                                             fit: BoxFit.cover,
                                             image: AssetImage(person),
                                           ),
                                         ),
                                       ),
-                                      Column(
+                                      const Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
@@ -141,17 +141,15 @@ class _HomePageState extends State<HomePage> {
                                             "name",
                                             style: hometextw,
                                           ),
-                                          Container(
-                                            child: Text(
-                                              "DOJ : 20-11-2023",
-                                              style: hometextw,
-                                            ),
+                                          Text(
+                                            "DOJ : 20-11-2023",
+                                            style: hometextw,
                                           ),
                                         ],
                                       ),
                                     ],
                                   ),
-                                  Column(
+                                  const Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
@@ -172,30 +170,33 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: width * .05,
-                      ),
                       Expanded(
-                        child: Container(
-                          height: height * .16,
-                          decoration: decor,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Completed\nCycle",
-                                  style: hometextw,
-                                  textAlign: TextAlign.center,
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Text(
-                                  "3",
-                                  style: timeStyl,
-                                ),
-                              ],
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Container(
+                            height: height * .16,
+                            decoration: decor,
+                            child: const Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "Completed\nCycle",
+                                    style: hometextw,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    "3",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -203,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15),
+                    padding: const EdgeInsets.only(top: 10),
                     child: Row(
                       children: [
                         Expanded(
@@ -218,7 +219,7 @@ class _HomePageState extends State<HomePage> {
                             child: Container(
                               decoration: decor,
                               height: height * .15,
-                              child: Column(
+                              child: const Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(
@@ -235,101 +236,105 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: width * .05,
-                        ),
                         Expanded(
                           flex: 3,
-                          child: Container(
-                            height: height * .15,
-                            decoration: decor,
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Current cycle        ",
-                                        style: hometextw,
-                                      ),
-                                      Container(
-                                        width: 30.0,
-                                        height: 30.0,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: [
-                                              Colors.grey.shade800,
-                                              Colors.black,
-                                              Colors.black,
-                                            ],
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.5),
-                                              spreadRadius: 0,
-                                              blurRadius: 4,
-                                              offset: Offset(0, 2),
-                                            ),
-                                          ],
-                                        ),
-                                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Container(
+                              height: height * .15,
+                              decoration: decor,
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
                                           child: Text(
-                                            "3",
+                                            "Current cycle        ",
                                             style: hometextw,
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Days completed   ",
-                                        style: hometextw,
-                                      ),
-                                      Container(
-                                        width: 30.0,
-                                        height: 30.0,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: [
-                                              Colors.grey.shade800,
-                                              Colors.black,
-                                              Colors.black,
+                                        Container(
+                                          width: 30.0,
+                                          height: 30.0,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                Colors.grey.shade800,
+                                                Colors.black,
+                                                Colors.black,
+                                              ],
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 0,
+                                                blurRadius: 4,
+                                                offset: Offset(0, 2),
+                                              ),
                                             ],
                                           ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.5),
-                                              spreadRadius: 0,
-                                              blurRadius: 4,
-                                              offset: Offset(0, 2),
+                                          child: const Center(
+                                            child: Text(
+                                              "3",
+                                              style: hometextw,
                                             ),
-                                          ],
+                                          ),
                                         ),
-                                        child: Center(
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
                                           child: Text(
-                                            "12",
+                                            "Days completed   ",
                                             style: hometextw,
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        Container(
+                                          width: 30.0,
+                                          height: 30.0,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                Colors.grey.shade800,
+                                                Colors.black,
+                                                Colors.black,
+                                              ],
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 0,
+                                                blurRadius: 4,
+                                                offset: Offset(0, 2),
+                                              ),
+                                            ],
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              "12",
+                                              style: hometextw,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -338,14 +343,14 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 15, bottom: 10),
+                    padding: EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
                       children: [
                         Expanded(
                           child: Container(
                             height: height * .10,
                             decoration: decor,
-                            child: Column(
+                            child: const Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
@@ -361,13 +366,13 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         SizedBox(
-                          width: 15,
+                          width: 10,
                         ),
                         Expanded(
                           child: Container(
                             height: height * .10,
                             decoration: decor,
-                            child: Column(
+                            child: const Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
@@ -375,7 +380,7 @@ class _HomePageState extends State<HomePage> {
                                   color: whitecolor,
                                 ),
                                 Text(
-                                  "Appointment",
+                                  appointment,
                                   style: hometextw,
                                 ),
                               ],
@@ -383,13 +388,13 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         SizedBox(
-                          width: 15,
+                          width: 10,
                         ),
                         Expanded(
                           child: Container(
                             height: height * .10,
                             decoration: decor,
-                            child: Column(
+                            child: const Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
@@ -397,7 +402,7 @@ class _HomePageState extends State<HomePage> {
                                   color: whitecolor,
                                 ),
                                 Text(
-                                  "Rewards & Notes",
+                                  rewardnote,
                                   style: hometextw,
                                 ),
                               ],
@@ -407,113 +412,130 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Row(
+                  //       children: [
+                  //         Container(
+                  //           height: 15,
+                  //           width: 15,
+                  //           decoration: BoxDecoration(
+                  //               color: Colors.green.shade400,
+                  //               borderRadius: BorderRadius.circular(3)),
+                  //         ),
+                  //         Text("complete"),
+                  //       ],
+                  //     ),
+                  //     Row(
+                  //       children: [
+                  //         Container(
+                  //           height: 15,
+                  //           width: 15,
+                  //           decoration: BoxDecoration(
+                  //               color: Colors.red.shade400,
+                  //               borderRadius: BorderRadius.circular(3)),
+                  //         ),
+                  //         Text("incomplete"),
+                  //       ],
+                  //     ),
+                  //   ],
+                  // ),
+                  Container(
+                    decoration: decorone,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 15,
-                            width: 15,
-                            decoration: BoxDecoration(
-                                color: Colors.green.shade400,
-                                borderRadius: BorderRadius.circular(3)),
-                          ),
-                          Text("complete"),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 15,
-                            width: 15,
-                            decoration: BoxDecoration(
-                                color: Colors.red.shade400,
-                                borderRadius: BorderRadius.circular(3)),
-                          ),
-                          Text("incomplete"),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Container(
-                      decoration: decorone,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  "Calender",
-                                  style: timeStyl,
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Container(
-                                  width: width / 2.6,
-                                  decoration: BoxDecoration(
-                                    color: whitecolor,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: HeatMapCalendar(
-                                    monthFontSize: 6,
-                                    defaultColor: Colors.grey.shade100,
-                                    fontSize: 10,
-                                    size: .5,
-                                    initDate: DateTime.now(),
-                                    margin: EdgeInsets.all(1),
-                                    flexible: true,
-                                    weekFontSize: 8,
-                                    weekTextColor: blackcolor,
-                                    colorMode: ColorMode.color,
-                                    showColorTip: false,
-                                    textColor: blackcolor,
-                                    datasets: datas,
-                                    colorsets: const {
-                                      1: Color.fromARGB(255, 109, 208, 112),
-                                      2: Color.fromARGB(255, 255, 122, 120),
-                                    },
-                                    onClick: (value) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(value.toString()),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                            GestureDetector(
-                                onTap:()=>Navigator.push(context, MaterialPageRoute(builder: (context) =>Meditationcycle())),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Meditation \nTimer",
-                                    style: timeStyl,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  SizedBox(
-                                    height: height * .03,
-                                  ),
-                                  Icon(
-                                    Icons.access_time,
-                                    color: whitecolor,
-                                    size: 100,
-                                  )
-                                ],
+                          Column(
+                            children: [
+                              const Text(
+                                "Calender",
+                                style: timeStyl,
                               ),
-                            ),
-                          ],
-                        ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Container(
+                                width: width / 2.6,
+                                decoration: BoxDecoration(
+                                  color: whitecolor,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: HeatMapCalendar(
+                                  monthFontSize: 6,
+                                  defaultColor: Colors.grey.shade100,
+                                  fontSize: 10,
+                                  size: .5,
+                                  initDate: DateTime.now(),
+                                  margin: EdgeInsets.all(1),
+                                  flexible: true,
+                                  weekFontSize: 8,
+                                  weekTextColor: blackcolor,
+                                  colorMode: ColorMode.color,
+                                  showColorTip: false,
+                                  textColor: blackcolor,
+                                  datasets: datas,
+                                  colorsets: const {
+                                    1: Color.fromRGBO(109, 208, 112, 1),
+                                    2: Color.fromARGB(255, 228, 187, 187),
+                                  },
+                                  onClick: (value) {
+                                    // ScaffoldMessenger.of(context)
+                                    //     .showSnackBar(
+                                    //   SnackBar(
+                                    //     content: Text(value.toString()),
+                                    // ),
+                                    // );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            Meditationcycle())),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      meditationtimer,
+                                      style: timeStyl,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    SizedBox(
+                                      height: height * .03,
+                                    ),
+                                    const Icon(
+                                      Icons.access_time,
+                                      color: whitecolor,
+                                      size: 100,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              ElevatedButton(
+                                style: ButtonStyle(
+                                    shape: MaterialStatePropertyAll(
+                                        ContinuousRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15)))),
+                                onPressed: () {},
+                                child: Text(
+                                  "Videos",
+                                  style: headstyl,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -527,41 +549,3 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class MyContinuousRotatingImage extends StatefulWidget {
-  @override
-  _MyContinuousRotatingImageState createState() =>
-      _MyContinuousRotatingImageState();
-}
-
-class _MyContinuousRotatingImageState extends State<MyContinuousRotatingImage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 2), // You can adjust the duration
-    )..repeat(); // This will make the animation loop
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return RotationTransition(
-      turns: _controller,
-      child: Image.asset(
-        "assets/images/logo 4.png",
-        width: 150.0,
-        height: 155,
-        fit: BoxFit.fill,
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-}

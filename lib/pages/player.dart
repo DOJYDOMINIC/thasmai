@@ -7,7 +7,6 @@ class VideoPlay extends StatefulWidget {
 }
 
 class _VideoPlayState extends State<VideoPlay> {
-
   late YoutubePlayerController _controller;
 
   @override
@@ -18,6 +17,7 @@ class _VideoPlayState extends State<VideoPlay> {
 
   void _initializeVideoController() {
     DateTime now = DateTime.now();
+
     String videoId;
 
     // Check if it's morning (6:00 AM to 9:00 AM)

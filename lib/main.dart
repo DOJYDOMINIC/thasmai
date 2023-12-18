@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:thasmai/pages/login.dart';
-import 'package:thasmai/pages/meditationtimer.dart';
-import 'package:thasmai/pages/player.dart';
+import 'package:provider/provider.dart';
 import 'package:thasmai/pages/register.dart';
+
+import 'controller/controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,16 +14,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserController()),
+      ],
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          backgroundColor: Colors.black,
+          scaffoldBackgroundColor: Colors.white,
           textTheme: GoogleFonts.poppinsTextTheme(
             Theme.of(context).textTheme,
           ),
-          appBarTheme: AppBarTheme(backgroundColor: Colors.black),
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
         ),
-        home: TimerScreen());
-        // home: Login());
+        home: Register(),
+        // home: CountryPage(),
+      ),
+    );
   }
 }

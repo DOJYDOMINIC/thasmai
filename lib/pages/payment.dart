@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:thasmai/constants/consts.dart';
-
 import '../widgets/bottombutton_w.dart';
 import '../widgets/paymenttile.dart';
 
@@ -15,11 +14,11 @@ class _PaymentPageState extends State<PaymentPage> {
 
   bool isPressed = false;
 
-  void ButtonState() {
+  void buttonState() {
     setState(() {
       isPressed = !isPressed;
     });
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       setState(() {
         isPressed = !isPressed;
       });
@@ -57,7 +56,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 SizedBox(width: 45, height: 45, child: Image.asset(logo)),
               ],
             ),
-            Padding(
+           const Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Row(
                 children: [
@@ -78,12 +77,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 boolval: isPressed,
                 buttontext: "Back",
                 ontap: () {
-                  ButtonState();
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => (),
-                  //     ));
+                  buttonState();
                 }),
             Spacer(),
           ],

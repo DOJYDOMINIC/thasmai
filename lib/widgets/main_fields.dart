@@ -1,8 +1,6 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:thasmai/constants/consts.dart';
 
 const Color appcolor = Colors.black;
 
@@ -46,17 +44,18 @@ class _TextFieldOneState extends State<TextFieldOne> {
       child: TextFormField(
         keyboardType: widget.keytype,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 15.0),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
           hintText: widget.hintText,
           hintStyle: GoogleFonts.poppins(color: Colors.grey.shade400),
           suffixIcon: widget.sufix,
-          errorBorder: OutlineInputBorder(
+          errorBorder:const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(8)),
             borderSide: BorderSide(width: 1, color: Colors.red),
+
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
                 width: 2, color: Colors.grey), // Border color when not in focus
           ),
           labelText: widget.hinttext,

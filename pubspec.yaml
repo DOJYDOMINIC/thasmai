@@ -43,6 +43,12 @@ dependencies:
   flutter_heatmap_calendar: ^1.0.5
   flutter_countdown_timer: ^4.1.0
   circular_countdown_timer: ^0.2.3
+  audioplayers: ^5.2.1
+  pinput: ^3.0.1
+  http: ^1.1.2
+  intl: ^0.18.1
+  connectivity: ^3.0.6
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:

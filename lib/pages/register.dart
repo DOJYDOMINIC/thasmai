@@ -1,19 +1,59 @@
+import 'package:connectivity/connectivity.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:thasmai/constants/consts.dart';
+import 'package:thasmai/controller/controller.dart';
 import 'package:thasmai/pages/login.dart';
+import 'package:thasmai/widgets/dialogbox.dart';
 import 'package:thasmai/widgets/main_fields.dart';
-import '../widgets/mydrawer.dart';
-import 'meditationdata.dart';
+import '../models/otpmodel.dart';
+import '../services/services.dart';
+import 'otp.dart';
 
 class Register extends StatefulWidget {
-  const Register({super.key});
+  const Register({Key? key}) : super(key: key);
 
   @override
   State<Register> createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
-  double val = .18;
+  ConnectivityResult _connectivityResult = ConnectivityResult.none;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Subscribe to connectivity changes
+    Connectivity().onConnectivityChanged.listen((result) {
+      setState(() {
+        _connectivityResult = result;
+      });
+    });
+
+    // Check initial connectivity
+    checkConnectivity();
+  }
+
+  Future<void> checkConnectivity() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    setState(() {
+      _connectivityResult = connectivityResult;
+    });
+    if (_connectivityResult == ConnectivityResult.none) {
+      var text = "No internet";
+      return showPlatformDialog(context, text);
+    }
+  }
+
+  double val = 0.18;
+
+  String _email = '';
+  String _phone = '';
+  String _password = '';
+
+  bool isPressed = false;
 
   void ButtonState() {
     setState(() {
@@ -27,75 +67,85 @@ class _RegisterState extends State<Register> {
   }
 
   final _formKey = GlobalKey<FormState>();
-  bool isPressed = false;
+
+  // Remove these controllers if not needed
   TextEditingController email = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmpass = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    // var width = MediaQuery.of(context).size.width;
+    var provider = Provider.of<UserController>(context);
 
     return Scaffold(
       backgroundColor: Colors.black,
-      drawer: MyDrawer(),
       body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Container(
-            height: height,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.fill, image: AssetImage(bgimage))),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15, right: 20),
-              child: SafeArea(
-                child: Column(children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Builder(
-                        builder: (BuildContext context) {
-                          return IconButton(
-                            onPressed: () {
-                              Scaffold.of(context).openDrawer();
-                            },
-                            icon:
-                                Icon(Icons.menu, color: Colors.black, size: 35),
-                          );
-                        },
-                      ),
-                      SizedBox(width: 45, height: 45, child: Image.asset(logo))
-                    ],
+        child: Column(
+          children: [
+            Form(
+              key: _formKey,
+              child: Container(
+                decoration: const BoxDecoration(
+                  // color: Colors.red,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage(bgimage),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 5),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 20),
+                  child: SafeArea(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(child: Text(welcome, style: welcomeheading)),
-                        Container(child: Text(subtxtreg, style: substyl)),
-                        SizedBox(
-                          height: height * val,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Builder(
+                              builder: (BuildContext context) {
+                                return IconButton(
+                                  onPressed: () {
+                                    Scaffold.of(context).openDrawer();
+                                  },
+                                  icon: const Icon(Icons.menu,
+                                      color: Colors.black, size: 35),
+                                );
+                              },
+                            ),
+                            SizedBox(
+                                width: 45,
+                                height: 45,
+                                child: Image.asset(logo)),
+                          ],
                         ),
+                        Row(
+                          children: [
+                            Container(
+                                child: Text(welcome, style: welcomeheading)),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(child: Text(subtxtreg, style: substyl)),
+                          ],
+                        ),
+                        SizedBox(height: height * val),
                         TextFieldOne(
                           hintText: emailhint,
+                          // Use controllers if needed
                           controller: email,
                           onchange: (value) {
-                            // _email = value!;
+                            provider.email= value;
                           },
                           obsecuretxt: false,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              //val = .09;
                               return 'Please enter your email';
                             }
-                            // Use a regular expression for basic email validation
                             if (!RegExp(
                                     r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
                                 .hasMatch(value)) {
-                              //val = .09;
                               return 'Please enter a valid email address';
                             }
                             return null;
@@ -103,18 +153,17 @@ class _RegisterState extends State<Register> {
                         ),
                         TextFieldOne(
                           hintText: phonehint,
+                          // Use controllers if needed
                           controller: phone,
-                          onchange: (value) {},
+                          onchange: (value) {
+                            provider.phone = value;
+                          },
                           obsecuretxt: false,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              //val = .09;
                               return 'Please enter your phone number';
                             }
-
-                            // Use a regular expression to check for a valid phone number format
                             if (!RegExp(r"^[0-9]{10}$").hasMatch(value)) {
-                              //val = .09;
                               return 'Please enter a valid 10-digit phone number';
                             }
                             return null;
@@ -122,16 +171,17 @@ class _RegisterState extends State<Register> {
                         ),
                         TextFieldOne(
                           hintText: newpasswordhint,
+                          // Use controllers if needed
                           controller: password,
-                          onchange: (value) {},
+                          onchange: (value) {
+                            provider.password = value;
+                          },
                           obsecuretxt: false,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              //val = .09;
                               return 'Please enter a password';
                             }
                             if (value.length < 6) {
-                              //val = .09;
                               return 'Password must be at least 6 characters long';
                             }
                             return null;
@@ -139,40 +189,59 @@ class _RegisterState extends State<Register> {
                         ),
                         TextFieldOne(
                           hintText: confirmpasswordhint,
+                          // Use controllers if needed
                           controller: confirmpass,
                           onchange: (value) {},
                           obsecuretxt: false,
                           validator: (value) {
-                            //val = .09;
                             if (value == null || value.isEmpty) {
                               return 'Please confirm your password';
                             }
-                            if (value != password.text) {
-                              //val = .09;
+                            if (value != provider.password) {
                               return 'Passwords do not match';
                             }
                             return null;
                           },
                         ),
-                        SizedBox(
-                          height: height * .04,
-                        ),
+                        SizedBox(height: height * .04),
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
+                            print("enter0");
                             setState(() {
                               ButtonState();
-                              // if (_formKey.currentState!.validate()) {
-                              // Form is valid, perform your action
-                              // _formKey.currentState!.save();
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MeditationData(),
-                                  ));
-
-                              // print('Email submitted: $_email');
-                              // }
                             });
+                            if (_formKey.currentState!.validate()) {
+                              print("enter");
+                              Otp? otpResponse = await sendOtp(_email, context);
+                              if (otpResponse!.otp.isNotEmpty) {
+                                print("enter1");
+
+                                String otp = otpResponse.otp.toString();
+
+                                var data = <String, dynamic>{
+                                  "email": _email,
+                                  "phone": _phone,
+                                  "password": _password,
+                                  "otp": otp,
+                                };
+                                setState(() {});
+                                print("data : $otp");
+
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => OtpPage(
+                                              data: data,
+                                            )));
+                              } else {
+                                print("enter2");
+
+                                var text = "reg issue";
+                                showPlatformDialog(context, text);
+                              }
+                              print(otpResponse.otp.toString());
+                              return null;
+                            }
                           },
                           child: AnimatedContainer(
                             duration: Duration(milliseconds: 50),
@@ -217,45 +286,47 @@ class _RegisterState extends State<Register> {
                               child: Text(
                                 signuphint,
                                 style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w600),
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: height * .02,
-                        ),
+                        SizedBox(height: height * .06),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
                                     builder: (context) => Login(),
-                                  ));
-                                },
-                                child: const Text(
-                                  loginhint,
-                                  style: TextStyle(color: ambercolor),
-                                )),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                loginhint,
+                                style: TextStyle(color: ambercolor),
+                              ),
+                            ),
                             Text(needsupport,
                                 style: TextStyle(color: whitecolor)),
                             TextButton(
                               onPressed: () {},
                               child: const Text(help,
                                   style: TextStyle(color: ambercolor)),
-                            )
+                            ),
                           ],
-                        ),
+                        )
                       ],
                     ),
-                  )
-                ]),
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

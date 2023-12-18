@@ -37,6 +37,10 @@ const String district = "District";
 const String address = "Address";
 const String idproof = "Id Proof Details";
 const String meddatahed = "Meditation data";
+const String meditationtimer = "Meditation\nTimer";
+const String rewardnote = "Rewards and Notes";
+const String appointment = "Appointment";
+
 
 
 const List<String> hints = [
@@ -83,6 +87,7 @@ const TextStyle timetheam = TextStyle(
   fontWeight: FontWeight.w700,
   fontSize: 25.0,
 );
+
 const TextStyle timeStyl = TextStyle(
   color: Colors.white,
   fontWeight: FontWeight.w600,
@@ -120,3 +125,4 @@ Decoration decorone = BoxDecoration(
         Colors.grey.shade900,
       ],
     ));
+    
