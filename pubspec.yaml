@@ -49,6 +49,7 @@ dependencies:
   intl: ^0.18.1
   connectivity: ^3.0.6
   provider: ^6.1.1
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

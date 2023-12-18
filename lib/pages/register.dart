@@ -77,7 +77,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var provider = Provider.of<UserController>(context);
+    var provider = Provider.of<UserController>(context, listen: false);
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -136,7 +136,7 @@ class _RegisterState extends State<Register> {
                           // Use controllers if needed
                           controller: email,
                           onchange: (value) {
-                            provider.email= value;
+                            provider.email = value;
                           },
                           obsecuretxt: false,
                           validator: (value) {
@@ -205,42 +205,26 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: height * .04),
                         GestureDetector(
-                          onTap: () async {
+                          onTap: () {
                             print("enter0");
                             setState(() {
                               ButtonState();
                             });
+                            print(provider.password);
+                            try{
                             if (_formKey.currentState!.validate()) {
-                              print("enter");
-                              Otp? otpResponse = await sendOtp(_email, context);
-                              if (otpResponse!.otp.isNotEmpty) {
-                                print("enter1");
+                              print(provider.email);
+                              sendOtp(_email, context);
 
-                                String otp = otpResponse.otp.toString();
-
-                                var data = <String, dynamic>{
-                                  "email": _email,
-                                  "phone": _phone,
-                                  "password": _password,
-                                  "otp": otp,
-                                };
-                                setState(() {});
-                                print("data : $otp");
-
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => OtpPage(
-                                              data: data,
-                                            )));
-                              } else {
-                                print("enter2");
-
-                                var text = "reg issue";
-                                showPlatformDialog(context, text);
-                              }
-                              print(otpResponse.otp.toString());
+                              // else {
+                              //   print("enter2");
+                              //   var text = "reg issue";
+                              //   showPlatformDialog(context, text);
+                              // }
+                              print(provider.otp);
                               return null;
+                            }}catch(e){
+                              print(e);
                             }
                           },
                           child: AnimatedContainer(
@@ -314,7 +298,9 @@ class _RegisterState extends State<Register> {
                             Text(needsupport,
                                 style: TextStyle(color: whitecolor)),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                sendOtp(provider.email, context);
+                              },
                               child: const Text(help,
                                   style: TextStyle(color: ambercolor)),
                             ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:thasmai/constants/consts.dart';
 import 'package:thasmai/pages/register.dart';
 import 'package:thasmai/services/services.dart';
 import 'package:thasmai/widgets/main_fields.dart';
+
+import '../controller/controller.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -33,6 +36,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     // var width = MediaQuery.of(context).size.width;
+    var provider = Provider.of<UserController>(context, listen: false);
 
     return Scaffold(
       // drawer: const MyDrawer(),
@@ -84,7 +88,9 @@ class _LoginState extends State<Login> {
                           TextFieldOne(
                             hinttext: emailhint,
                             controller: email,
-                            onchange: (value) {},
+                            onchange: (value) {
+                              provider.email = value;
+                            },
                             obsecuretxt: false,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -101,7 +107,9 @@ class _LoginState extends State<Login> {
                           TextFieldOne(
                             hinttext: passwordhint,
                             controller: password,
-                            onchange: (value) {},
+                            onchange: (value) {
+                              provider.password = value;
+                            },
                             obsecuretxt: false,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -120,7 +128,7 @@ class _LoginState extends State<Login> {
                             onTap: () {
                               buttonState();
                               if (_formKey.currentState!.validate()) {
-                                loginCall(email.text, password.text,context);
+                                loginCall(provider.email, provider.password,context);
                               }
                             },
                             child: AnimatedContainer(

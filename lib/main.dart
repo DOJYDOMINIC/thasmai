@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:thasmai/pages/register.dart';
-
+import 'controller/connectivitycontroller.dart';
 import 'controller/controller.dart';
 
 void main() {
@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
     return  MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UserController()),
+        ChangeNotifierProvider(create: (context) => ConnectivityProvider()),
       ],
-      child: MaterialApp(
+      child:Consumer(builder: (context, value, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
         home: Register(),
         // home: CountryPage(),
-      ),
+      ),),
     );
   }
 }
